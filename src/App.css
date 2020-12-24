@@ -1,0 +1,22 @@
+.radioList li {
+  width: 90%;
+  height: 50px;
+  text-align: centers;
+  list-style: none;
+  border: solid 1px gray;
+}
+
+.radioList {
+  margin-top: 80px;
+  padding-bottom: 10px;
+}
+
+.navBar {
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  background-color: royalblue;
+  text-align: center;
+  padding-top: 10px;
+  color: aliceblue;
+}
