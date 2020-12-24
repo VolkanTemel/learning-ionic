@@ -1,0 +1,7 @@
+{
+  "name": "pcs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
