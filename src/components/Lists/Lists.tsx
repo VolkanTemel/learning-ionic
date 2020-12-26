@@ -1,9 +1,9 @@
 import React from 'react';
 import { IonItem, IonLabel, IonContent, IonCheckbox, IonInput, IonButton } from '@ionic/react';
 
-import "./List.css";
+import "./Lists.css";
 
-class List extends React.Component {
+class Lists extends React.Component {
   state = {
     todos:[{id:1}],
     isLoaded: false
@@ -24,7 +24,7 @@ class List extends React.Component {
   }
   
    render () {
-    let todos = this.state.isLoaded? this.state.todos.map((todo) =>
+    let todoss = this.state.isLoaded? this.state.todos.map((todo) =>
     <IonItem key={todo.id}>
       <IonLabel>{todo}</IonLabel>
       <IonCheckbox slot="end" color="primary" />
@@ -36,7 +36,7 @@ class List extends React.Component {
     return (
       <IonContent >
         <div className="header"><h1>To-Do List</h1></div>
-        {todos}
+        {todoss}
         <IonItem className="addTodo">
           <IonLabel> To Do : </IonLabel>
           <IonInput></IonInput>
@@ -48,4 +48,4 @@ class List extends React.Component {
     )
   }
 };
-export default List;
+export default Lists;

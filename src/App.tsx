@@ -1,6 +1,6 @@
 import React from 'react';
 import {IonApp} from '@ionic/react';
-import List from './components/List/List';
+import Lists from './components/Lists/Lists';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -23,7 +23,7 @@ import './App.css';
 
 const App: React.FC = () => (
   <IonApp>
-    <List/>
+    <Lists/>
   </IonApp>
 );
 
