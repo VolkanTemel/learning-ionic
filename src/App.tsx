@@ -1,6 +1,6 @@
 import React from 'react';
 import {IonApp} from '@ionic/react';
-import {List} from './components/List/List';
+import List from './components/List/List';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 

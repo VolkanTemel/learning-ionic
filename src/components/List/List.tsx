@@ -1,83 +1,51 @@
 import React from 'react';
-import { IonList, IonItem, IonLabel, IonInput, IonItemSliding, IonItemOption, IonItemOptions, IonContent } from '@ionic/react';
+import { IonItem, IonLabel, IonContent, IonCheckbox, IonInput, IonButton } from '@ionic/react';
 
-export const List: React.FC = () => (
-  <IonContent>
-    <IonList>
-      <IonItem>
-        <IonLabel>Pokémon Yellow</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Mega Man X</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>The Legend of Zelda</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pac-Man</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Super Mario World</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pokémon Yellow</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Mega Man X</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>The Legend of Zelda</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pac-Man</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Super Mario World</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pokémon Yellow</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Mega Man X</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>The Legend of Zelda</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pac-Man</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Super Mario World</IonLabel>
-      </IonItem>
-    </IonList>
+import "./List.css";
 
-    {/*-- List of Input Items --*/}
-    <IonList>
-      <IonItem>
-        <IonLabel>Input</IonLabel>
-        <IonInput></IonInput>
-      </IonItem>
-    </IonList>
+class List extends React.Component {
+  state = {
+    todos:[{id:1}],
+    isLoaded: false
+  }
 
-    {/*-- List of Sliding Items --*/}
-    <IonList>
-      <IonItemSliding>
-        <IonItem>
-          <IonLabel>Item</IonLabel>
+  componentDidMount () {
+    fetch("http://localhost/api/todos?page=1")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            todos: result.data
+          });
+        }
+
+      )
+  }
+  
+   render () {
+    let todos = this.state.isLoaded? this.state.todos.map((todo) =>
+    <IonItem key={todo.id}>
+      <IonLabel>{todo}</IonLabel>
+      <IonCheckbox slot="end" color="primary" />
+    </IonItem>):<p>Loading...</p>;
+
+    
+      
+  
+    return (
+      <IonContent >
+        <div className="header"><h1>To-Do List</h1></div>
+        {todos}
+        <IonItem className="addTodo">
+          <IonLabel> To Do : </IonLabel>
+          <IonInput></IonInput>
+          <IonButton color="success" type="submit">Add</IonButton>
+
         </IonItem>
-        <IonItemOptions side="end">
-          <IonItemOption onClick={() => {}}>Unread</IonItemOption>
-        </IonItemOptions>
-      </IonItemSliding>
 
-      <IonItemSliding>
-        <IonItem>
-          <IonLabel>Item</IonLabel>
-        </IonItem>
-        <IonItemOptions side="end">
-          <IonItemOption onClick={() => {}}>Unread</IonItemOption>
-        </IonItemOptions>
-      </IonItemSliding>
-    </IonList>
-  </IonContent>
-);
+      </IonContent>
+    )
+  }
+};
+export default List;
