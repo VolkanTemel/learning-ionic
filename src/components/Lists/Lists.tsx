@@ -4,38 +4,43 @@ import "./Lists.css";
 
 export default class Lists extends Component {
   state = {
-    todos:[{id:0, todo:""}],
+    todos: [{ id: 0, todo: "" }],
     isLoaded: false,
-    isActive:false
+    isActive: false
   }
 
-  checkCheckbox=() => {
+  checkCheckbox = () => {
     let isActive = this.state.isActive;
-    this.setState({isActive:!isActive})
+    this.setState({ isActive: !isActive })
   }
-    componentDidMount () {
-   this.getTodos();
+  componentDidMount () {
+    this.getTodos();
   }
 
-   getTodos = () =>{
+  getTodos = () => {
     fetch("http://localhost:3000/todos")
-    .then((Response) => Response.json())
-    .then((data) => this.setState({ todos: data , isLoaded: true}));
+      .then((Response) => Response.json())
+      .then((data) => this.setState({ todos: data, isLoaded: true }))
+    try {
+      throw new Error('Something went wrong!');
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   render () {
-    
-    let todos = (this.state.isLoaded?(this.state.todos.map((todo)=>(
-      <IonItem key={todo.id}><IonLabel>{todo.todo}</IonLabel><IonCheckbox onClick={this.checkCheckbox}/></IonItem>
-    ))): <IonItem><IonLabel>"Loading..."</IonLabel></IonItem>);
-    
+    let todos = (this.state.isLoaded ? (this.state.todos.map((todo) => (
+      <IonItem key={todo.id}><IonLabel>{todo.todo}</IonLabel><IonCheckbox onClick={this.checkCheckbox} /></IonItem>
+    ))) : <IonItem><IonLabel>Loading...</IonLabel></IonItem>);
+
     return (
+
       <IonContent >
         <div className="header"><h1>To-Do List</h1></div>
-      {todos}
+        {todos}
         <IonItem className="addTodo">
           <IonLabel> To Do : </IonLabel>
-          <IonInput></IonInput>
+          <IonInput placeholder="Enter To-Do"></IonInput>
           <IonButton color="success" type="submit">Add</IonButton>
         </IonItem>
       </IonContent>
